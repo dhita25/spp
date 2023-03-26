@@ -7,8 +7,8 @@ import 'package:spp/admin/history.dart';
 import 'package:spp/admin/spp.dart';
 import 'header_drawer.dart';
 import 'admin/petugas.dart';
-import 'login.dart';
 import 'package:spp/admin/register.dart';
+import 'package:spp/controllers/logout.dart';
 
 class Admin extends StatefulWidget{
   const Admin ({super.key});
@@ -276,13 +276,13 @@ class _AdminState extends State<Admin>{
   }
 }
 
-Future<void> logout(BuildContext context) async{
-  CircularProgressIndicator();
-  await FirebaseAuth.instance.signOut();
-  Navigator.pushReplacement(
-    context, 
-    MaterialPageRoute(
-      builder: (context) => LoginPage(),
-      ),
-      );
-}
+// Future<void> logout(BuildContext context) async{
+//   CircularProgressIndicator();
+//   await FirebaseAuth.instance.signOut();
+//   Navigator.pushReplacement(
+//     context, 
+//     MaterialPageRoute(
+//       builder: (context) => LoginPage(),
+//       ),
+//       );
+// }

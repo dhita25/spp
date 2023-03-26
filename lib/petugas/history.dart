@@ -1,33 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'login.dart';
+import 'package:spp/login.dart';
 
-class Student extends StatefulWidget {
-  const Student({super.key});
+class history extends StatefulWidget {
+  const history({super.key});
 
   @override
-  State<Student> createState() => _StudentState();
+  State<history> createState() => _historyState();
 }
 
-class _StudentState extends State<Student> {
+class _historyState extends State<history> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blueGrey[900],
-        title: Text("Student"),
-        actions: [
-          IconButton(
-            onPressed: () {
-              logout(context);
-            },
-            icon: Icon(
-              Icons.logout,
-            ),
-          )
-        ],
-      ),
       body: Container(
         color: Colors.white,
       ),

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:spp/Student.dart';
-import 'package:spp/admin/petugas.dart';
+import 'package:spp/petugas.dart';
 import 'Student.dart';
 import 'admin.dart';
 import 'register.dart';
