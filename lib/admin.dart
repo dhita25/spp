@@ -20,7 +20,7 @@ class Admin extends StatefulWidget{
 class _AdminState extends State<Admin>{
   @override
   Widget build(BuildContext context){
-    return Scaffold(
+    return Scaffold( 
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[900],
         title: Text("Admin"),
