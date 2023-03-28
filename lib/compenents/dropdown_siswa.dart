@@ -3,43 +3,43 @@ import 'package:flutter/material.dart';
 import 'package:spp/controllers/kelas_controller.dart';
 import 'package:spp/models/kelas_model.dart';
 
-class KelasDropdown extends StatefulWidget {
+class SiswaDropdown extends StatefulWidget {
   @override
-  _KelasDropdownState createState() => _KelasDropdownState();
+  _SiswaDropdownState createState() => _SiswaDropdownState();
 }
 
-class _KelasDropdownState extends State<KelasDropdown> {
-  String? selectedKelas;
-  List<dynamic> kelasList = [];
+class _SiswaDropdownState extends State<SiswaDropdown> {
+  String? selectedSiswa;
+  List<dynamic> siswaList = [];
 
   @override
   void initState() {
     super.initState();
-    getKelasList();
+    getSiswaList();
   }
 
-  void getKelasList() async {
+  void getSiswaList() async {
     QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('kelas').get();
+        await FirebaseFirestore.instance.collection('siswa').get();
     List<DocumentSnapshot> documentList = querySnapshot.docs;
     setState(() {
-      kelasList = documentList.map((doc) => doc['nama_kelas']).toList();
+      siswaList = documentList.map((doc) => doc['nis']).toList();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
-      value: selectedKelas,
-      items: kelasList.map((dynamic kelas) {
+      value: selectedSiswa,
+      items: siswaList.map((dynamic siswa) {
         return DropdownMenuItem<String>(
-          value: kelas,
-          child: Text(kelas),
+          value: siswa,
+          child: Text(siswa),
         );
       }).toList(),
       onChanged: (String? newValue) {
         setState(() {
-          selectedKelas = newValue;
+          selectedSiswa = newValue;
         });
       },
     );

@@ -108,6 +108,8 @@ class _ManageSiswaState extends State<ManageSiswa> {
                         labledtext: "Telepon", 
                         mycontroller: telp,),
                       const SizedBox(height: 10),
+                      const SizedBox(height: 10),
+                      Text("Kelas"),
                       KelasDropdown(),
                     ],
                 )),

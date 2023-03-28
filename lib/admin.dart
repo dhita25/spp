@@ -63,19 +63,19 @@ class _AdminState extends State<Admin>{
               ListTile(
                 leading: const Icon(Icons.payments),
                 title: const Text("SPP"),
-                onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const SPP()));},
+                onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Spp()));},
               ),
               //ENTRI TRANSAKSI
               ListTile(
                 leading: const Icon(Icons.point_of_sale),
                 title: const Text("Entri Transaksi"),
-                onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Entri()));},
+                onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>  ManagePembayaran()));},
               ),
               //HISTORY
               ListTile(
                 leading: const Icon(Icons.history),
                 title: const Text("History"),
-                onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const History()));},
+                onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const PembayaranPage()));},
               ),
               //ADD AKUN
               ListTile(
@@ -170,7 +170,7 @@ class _AdminState extends State<Admin>{
               borderRadius: BorderRadius.circular(10)
             ),
             child: InkWell(
-              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const SPP()));},
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Spp()));},
               splashColor: Colors.white,
               child: Center(
                 child: Column(
@@ -191,7 +191,7 @@ class _AdminState extends State<Admin>{
               borderRadius: BorderRadius.circular(10)
             ),
             child: InkWell(
-              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Entri()));},
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>  ManagePembayaran()));},
               splashColor: Colors.white,
               child: Center(
                 child: Column(
@@ -213,7 +213,7 @@ class _AdminState extends State<Admin>{
               borderRadius: BorderRadius.circular(10)
             ),
             child: InkWell(
-              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const History()));},
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const PembayaranPage()));},
               splashColor: Colors.white,
               child: Center(
                 child: Column(

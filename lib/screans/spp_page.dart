@@ -1,33 +1,33 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:spp/controllers/siswa_controller.dart';
-import 'package:spp/models/siswa_model.dart';
-import 'package:spp/screans/add_edit_siswa.dart';
+import 'package:spp/controllers/spp_controller.dart';
+import 'package:spp/models/spp_model.dart';
+import 'add_edit_spp.dart';
 
-class SiswaPage extends StatefulWidget{
-  const SiswaPage({super.key});
+class SppPage extends StatefulWidget{
+  const SppPage({super.key});
 
   @override
-  State<SiswaPage> createState() => _SiswaPage();
+  State<SppPage> createState() => _SppPage();
 }
 
 
 
-class _SiswaPage extends State<SiswaPage>{
-  final CollectionReference _siswa= 
-  FirebaseFirestore.instance.collection("siswa"); 
+class _SppPage extends State<SppPage>{
+  final CollectionReference _spp = 
+  FirebaseFirestore.instance.collection("spp"); 
   @override
   Widget build(BuildContext context){
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: ((context) => ManageSiswa())));
+          Navigator.push(context, MaterialPageRoute(builder: ((context) => ManageSpp())));
         },
       child: Icon(Icons.person),
       ),
       appBar: AppBar(
-      title:  Text('Data Siswa'),
+      title:  Text('Data SPP'),
       backgroundColor: Colors.blueGrey[900],
       ),
       body: SafeArea(
@@ -36,7 +36,7 @@ class _SiswaPage extends State<SiswaPage>{
               Container(
                 height: 500,
                 child: StreamBuilder(
-                  stream: _siswa.snapshots(),
+                  stream: _spp.snapshots(),
                   builder: (context, AsyncSnapshot snapshots) {
                     if(snapshots.connectionState == ConnectionState.waiting){
                       return Center(child: CircularProgressIndicator(color: Colors.orange[400]),
@@ -57,21 +57,17 @@ class _SiswaPage extends State<SiswaPage>{
                               children: [
                                 SlidableAction(
                                   onPressed: (context){
-                                    final siswa = siswa_model(
+                                    final spp = spp_model(
                                       id: records.id,
-                                      nisn: records["nisn"],
-                                      nis: records["nis"],
-                                      nama: records["nama"],
-                                      alamat: records["alamat"],
-                                      kelas: records["kelas"],
-                                      telp: records["telp"],
+                                      tahun: records["tahun"],
+                                      nominal: records["nominal"],
                                     );
                                     Navigator.push(
                                       context, 
                                       MaterialPageRoute(
                                         builder: ((context) => 
-                                    ManageSiswa(
-                                      siswa: siswa,
+                                    ManageSpp(
+                                      spp: spp,
                                       index: index,
                                     )
                                     )));
@@ -86,8 +82,8 @@ class _SiswaPage extends State<SiswaPage>{
                               children: [
                                 SlidableAction(
                                   onPressed: (context) {
-                                    siswa_controller sw_controller;
-                                    siswa_controller().delete_siswa(siswa_model(id: records.id));
+                                    spp_controller sp_controller;
+                                    spp_controller().delete_spp(spp_model(id: records.id));
                                   },
                                   icon: Icons.delete_outline,
                                   backgroundColor: Colors.red,
@@ -98,8 +94,8 @@ class _SiswaPage extends State<SiswaPage>{
                               tileColor: Colors.orange[400],
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                              title: Text(records["nama"]),
-                              subtitle: Text(records["nis"]),
+                              title: Text(records["tahun"]),
+                              subtitle: Text(records["nominal"]),
                             ), 
                           ),
                         );

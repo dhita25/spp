@@ -1,33 +1,109 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:spp/models/pembayaran_model.dart';
+//import 'package:spp/controllers/pembayaran_controller.dart';
+import 'package:spp/petugas/detailPembayaran.dart';
 
-import 'package:spp/login.dart';
-
-class history extends StatefulWidget {
-  const history({super.key});
+class PembayaranPage extends StatefulWidget{
+  const PembayaranPage({super.key});
 
   @override
-  State<history> createState() => _historyState();
+  State<PembayaranPage> createState() => _PembayaranPage();
 }
 
-class _historyState extends State<history> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.white,
-      ),
-    );
-  }
 
-  Future<void> logout(BuildContext context) async {
-    CircularProgressIndicator();
-    await FirebaseAuth.instance.signOut();
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => LoginPage(),
-      ),
-    );
+
+class _PembayaranPage extends State<PembayaranPage>{
+  final CollectionReference _pembayaran = 
+  FirebaseFirestore.instance.collection("pembayaran"); 
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: SafeArea(
+        child:Column(
+            children: [
+              Container(
+                height: 500,
+                child: StreamBuilder(
+                  stream: _pembayaran.snapshots(),
+                  builder: (context, AsyncSnapshot snapshots) {
+                    if(snapshots.connectionState == ConnectionState.waiting){
+                      return Center(child: CircularProgressIndicator(color: Colors.orange[400]),
+                      );
+                    }
+                    
+                    if(snapshots.hasData){
+                      return ListView.builder(
+                        itemCount: snapshots.data!.docs.length,
+                        itemBuilder: (context, index){
+                          final DocumentSnapshot records = 
+                          snapshots.data!.docs[index];
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Slidable(
+                            startActionPane: ActionPane(
+                              motion: StretchMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (context){
+                                    final pembayaran = pembayaran_model(
+                                      id: records.id,
+                                      nis: records["nis"],
+                                      jumlah_bayar: records["jumlah_bayar"],
+                                      tanggal_bayar: records["tanggal_bayar"],
+                                      bulan_bayar: records["bulan_bayar"],
+                                      tahun_bayar: records["tahun_bayar"],
+                                      status: records["status"],
+                                    );
+                                    Navigator.push(
+                                      context, 
+                                      MaterialPageRoute(
+                                        builder: ((context) => 
+                                    ManageEntri(
+                                      pembayaran: pembayaran,
+                                      index: index,
+                                    )
+                                    )));
+                                  },
+                                  icon: Icons.info,
+                                  backgroundColor: Colors.blue,
+                                  ),
+                              ],
+                            ),
+                            // endActionPane: ActionPane(
+                            //   motion: StretchMotion(),
+                            //   children: [
+                            //     SlidableAction(
+                            //       onPressed: (context) {
+                            //         pembayaran_controller pb_controller;
+                            //         pembayaran_controller().delete_pembayaran(pembayaran_model(id: records.id));
+                            //       },
+                            //       icon: Icons.delete_outline,
+                            //       backgroundColor: Colors.red,
+                            //       ),
+                            //   ],
+                            // ),
+                            child: ListTile(
+                              tileColor: Colors.orange[400],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                              title: Text(records["tanggal_bayar"]),
+                              subtitle: Text(records["jumlah_bayar"]),
+                            ), 
+                          ),
+                        );
+                      });
+                    }else{}
+
+                    return Center(
+                      child: CircularProgressIndicator(color: Colors.red),
+                    );
+                  },
+                ),
+              ),
+            ],
+            )),
+      );
   }
 }

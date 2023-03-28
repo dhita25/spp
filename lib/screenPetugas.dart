@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:spp/admin/entri.dart';
 import 'petugas/history.dart';
-import 'petugas/siswa.dart';
+import 'petugas/entriPembayaran.dart';
 import 'controllers/logout.dart';
-
+import 'admin/entri.dart';
 List<Widget> screenPetugas(){
   return[
-    const dataSiswa(),
-    const history(),
+    ManageEntri(),
+    PembayaranPage(),
   ];
 }

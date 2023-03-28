@@ -1,24 +1,25 @@
+import 'dart:ffi';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import '../screans/petugas_page.dart';
 
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); 
+  runApp(const Petugas());
+}
 
 class Petugas extends StatelessWidget {
   const Petugas({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Data Petugas'),
-        backgroundColor: Colors.blueGrey[900],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text('Page petugas')
-          ],
-        ),
-      ),
+    return MaterialApp(
+      home: PetugasPage(),
     );
   }
 }
+

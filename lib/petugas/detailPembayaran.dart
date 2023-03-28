@@ -7,16 +7,16 @@ import 'package:spp/models/kelas_model.dart';
 import 'package:spp/models/pembayaran_model.dart';
 import '../compenents/mytetxtfield.dart';
 
-class ManagePembayaran extends StatefulWidget {
+class ManageEntri extends StatefulWidget {
   final pembayaran_model? pembayaran;
   final index;
-  ManagePembayaran({this.pembayaran, this.index});
+  ManageEntri({this.pembayaran, this.index});
 
   @override
-  State<ManagePembayaran> createState() => _ManagePembayaranState();
+  State<ManageEntri> createState() => _ManageEntriState();
 }
 
-class _ManagePembayaranState extends State<ManagePembayaran> {
+class _ManageEntriState extends State<ManageEntri> {
   final _form_key = GlobalKey<FormState>();
   bool iseditingmode = false;
   final TextEditingController id= TextEditingController();
@@ -50,10 +50,9 @@ class _ManagePembayaranState extends State<ManagePembayaran> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Detail pembayaran'),
         backgroundColor: Colors.blueGrey[900],
-        title: iseditingmode == true 
-      ?  Text("ENTRI PEMBAYARAN") 
-      :  Text("ENTRI PEMBAYARAN")),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -116,34 +115,34 @@ class _ManagePembayaranState extends State<ManagePembayaran> {
                 )),
               ),
               const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                if(_form_key.currentState!.validate()){
-                  _form_key.currentState!.save();
-                      if(iseditingmode == true){
-                        pembayaran_controller().update_pembayaran(
-                          pembayaran_model( 
-                            id: id.text,
-                            nis: nis.text,
-                            jumlah_bayar: jumlah_bayar.text, 
-                            tanggal_bayar: tanggal_bayar.text, 
-                            bulan_bayar: bulan_bayar.text, 
-                            tahun_bayar: tahun_bayar.text, 
-                            status: status.text));
-                      }
-                      else{
-                        pembayaran_controller().add_pembayaran(
-                          pembayaran_model( 
-                            nis: nis.text,
-                            jumlah_bayar: jumlah_bayar.text, 
-                            tanggal_bayar: tanggal_bayar.text, 
-                            bulan_bayar: bulan_bayar.text, 
-                            tahun_bayar: tahun_bayar.text, 
-                            status: status.text));
-                      }
-                }
+              // ElevatedButton(
+              //   onPressed: () {
+              //   if(_form_key.currentState!.validate()){
+              //     _form_key.currentState!.save();
+              //         if(iseditingmode == true){
+              //           pembayaran_controller().update_pembayaran(
+              //             pembayaran_model( 
+              //               id: id.text,
+              //               nis: nis.text,
+              //               jumlah_bayar: jumlah_bayar.text, 
+              //               tanggal_bayar: tanggal_bayar.text, 
+              //               bulan_bayar: bulan_bayar.text, 
+              //               tahun_bayar: tahun_bayar.text, 
+              //               status: status.text));
+              //         }
+              //         else{
+              //           pembayaran_controller().add_pembayaran(
+              //             pembayaran_model( 
+              //               nis: nis.text,
+              //               jumlah_bayar: jumlah_bayar.text, 
+              //               tanggal_bayar: tanggal_bayar.text, 
+              //               bulan_bayar: bulan_bayar.text, 
+              //               tahun_bayar: tahun_bayar.text, 
+              //               status: status.text));
+              //         }
+              //   }
                 
-              }, child: iseditingmode == true ? Text("update") : Text("simpan") )
+              // }, child: iseditingmode == true ? Text("update") : Text("simpan") )
 
             ],),
         )),

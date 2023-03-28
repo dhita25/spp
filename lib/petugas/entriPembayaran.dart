@@ -7,16 +7,16 @@ import 'package:spp/models/kelas_model.dart';
 import 'package:spp/models/pembayaran_model.dart';
 import '../compenents/mytetxtfield.dart';
 
-class ManagePembayaran extends StatefulWidget {
+class ManageEntri extends StatefulWidget {
   final pembayaran_model? pembayaran;
   final index;
-  ManagePembayaran({this.pembayaran, this.index});
+  ManageEntri({this.pembayaran, this.index});
 
   @override
-  State<ManagePembayaran> createState() => _ManagePembayaranState();
+  State<ManageEntri> createState() => _ManageEntriState();
 }
 
-class _ManagePembayaranState extends State<ManagePembayaran> {
+class _ManageEntriState extends State<ManageEntri> {
   final _form_key = GlobalKey<FormState>();
   bool iseditingmode = false;
   final TextEditingController id= TextEditingController();
@@ -49,11 +49,10 @@ class _ManagePembayaranState extends State<ManagePembayaran> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blueGrey[900],
-        title: iseditingmode == true 
-      ?  Text("ENTRI PEMBAYARAN") 
-      :  Text("ENTRI PEMBAYARAN")),
+      // appBar: AppBar(
+      //   title: const Text('Detail pembayaran'),
+      //   backgroundColor: Colors.blueGrey[900],
+      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -94,13 +93,13 @@ class _ManagePembayaranState extends State<ManagePembayaran> {
                       const SizedBox(height: 10),
                       MyTextField(
                         hintedtex: "example: tanggal sekarang", 
-                        labledtext: "tamnggal bayar", 
+                        labledtext: "tanggal bayar", 
                         mycontroller: tanggal_bayar,),
                       const SizedBox(height: 10),
                       MyTextField(
                         hintedtex: "example: januari", 
                         labledtext: "bulan bayar", 
-                        mycontroller: tanggal_bayar,),
+                        mycontroller: bulan_bayar,),
                       const SizedBox(height: 10),
                       MyTextField(
                         hintedtex: "example:2023", 

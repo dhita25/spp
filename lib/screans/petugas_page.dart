@@ -1,33 +1,34 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:spp/controllers/siswa_controller.dart';
-import 'package:spp/models/siswa_model.dart';
-import 'package:spp/screans/add_edit_siswa.dart';
+import 'package:spp/controllers/petugas_controller.dart';
+import 'package:spp/models/petugas_model.dart';
+import 'package:spp/screans/add_edit_petugas.dart';
 
-class SiswaPage extends StatefulWidget{
-  const SiswaPage({super.key});
+
+class PetugasPage extends StatefulWidget{
+  const PetugasPage({super.key});
 
   @override
-  State<SiswaPage> createState() => _SiswaPage();
+  State<PetugasPage> createState() => _PetugasPage();
 }
 
 
 
-class _SiswaPage extends State<SiswaPage>{
-  final CollectionReference _siswa= 
-  FirebaseFirestore.instance.collection("siswa"); 
+class _PetugasPage extends State<PetugasPage>{
+  final CollectionReference _petugas = 
+  FirebaseFirestore.instance.collection("petugas"); 
   @override
   Widget build(BuildContext context){
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: ((context) => ManageSiswa())));
+          Navigator.push(context, MaterialPageRoute(builder: ((context) => ManagePetugas())));
         },
       child: Icon(Icons.person),
       ),
       appBar: AppBar(
-      title:  Text('Data Siswa'),
+      title:  Text('Data Petugas'),
       backgroundColor: Colors.blueGrey[900],
       ),
       body: SafeArea(
@@ -36,7 +37,7 @@ class _SiswaPage extends State<SiswaPage>{
               Container(
                 height: 500,
                 child: StreamBuilder(
-                  stream: _siswa.snapshots(),
+                  stream: _petugas.snapshots(),
                   builder: (context, AsyncSnapshot snapshots) {
                     if(snapshots.connectionState == ConnectionState.waiting){
                       return Center(child: CircularProgressIndicator(color: Colors.orange[400]),
@@ -57,21 +58,18 @@ class _SiswaPage extends State<SiswaPage>{
                               children: [
                                 SlidableAction(
                                   onPressed: (context){
-                                    final siswa = siswa_model(
+                                    final petugas = petugas_model(
                                       id: records.id,
-                                      nisn: records["nisn"],
-                                      nis: records["nis"],
-                                      nama: records["nama"],
-                                      alamat: records["alamat"],
-                                      kelas: records["kelas"],
-                                      telp: records["telp"],
+                                      email: records["email"],
+                                      nama_petugas: ["nama_petugas"],
+                                      password: records["password"],
                                     );
                                     Navigator.push(
                                       context, 
                                       MaterialPageRoute(
                                         builder: ((context) => 
-                                    ManageSiswa(
-                                      siswa: siswa,
+                                    ManagePetugas(
+                                      petugas: petugas,
                                       index: index,
                                     )
                                     )));
@@ -86,8 +84,8 @@ class _SiswaPage extends State<SiswaPage>{
                               children: [
                                 SlidableAction(
                                   onPressed: (context) {
-                                    siswa_controller sw_controller;
-                                    siswa_controller().delete_siswa(siswa_model(id: records.id));
+                                    petugas_controller kl_controller;
+                                    petugas_controller().delete_petugas(petugas_model(id: records.id));
                                   },
                                   icon: Icons.delete_outline,
                                   backgroundColor: Colors.red,
@@ -98,8 +96,7 @@ class _SiswaPage extends State<SiswaPage>{
                               tileColor: Colors.orange[400],
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                              title: Text(records["nama"]),
-                              subtitle: Text(records["nis"]),
+                              title: Text(records["nama_petugas"]),
                             ), 
                           ),
                         );
