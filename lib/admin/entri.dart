@@ -1,9 +1,5 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
-import 'package:spp/controllers/kelas_controller.dart';
 import 'package:spp/controllers/pembayaran_controller.dart';
-import 'package:spp/models/kelas_model.dart';
 import 'package:spp/models/pembayaran_model.dart';
 import '../compenents/mytetxtfield.dart';
 
@@ -52,8 +48,8 @@ class _ManagePembayaranState extends State<ManagePembayaran> {
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[900],
         title: iseditingmode == true 
-      ?  Text("ENTRI PEMBAYARAN") 
-      :  Text("ENTRI PEMBAYARAN")),
+        ?  Text("ENTRI PEMBAYARAN") 
+        :  Text("ENTRI PEMBAYARAN")),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -94,13 +90,13 @@ class _ManagePembayaranState extends State<ManagePembayaran> {
                       const SizedBox(height: 10),
                       MyTextField(
                         hintedtex: "example: tanggal sekarang", 
-                        labledtext: "tamnggal bayar", 
+                        labledtext: "tanggal bayar", 
                         mycontroller: tanggal_bayar,),
                       const SizedBox(height: 10),
                       MyTextField(
                         hintedtex: "example: januari", 
                         labledtext: "bulan bayar", 
-                        mycontroller: tanggal_bayar,),
+                        mycontroller: bulan_bayar,),
                       const SizedBox(height: 10),
                       MyTextField(
                         hintedtex: "example:2023", 
@@ -142,9 +138,7 @@ class _ManagePembayaranState extends State<ManagePembayaran> {
                             status: status.text));
                       }
                 }
-                
               }, child: iseditingmode == true ? Text("update") : Text("simpan") )
-
             ],),
         )),
     );

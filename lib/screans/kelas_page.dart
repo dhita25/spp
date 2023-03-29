@@ -24,7 +24,7 @@ class _KelasPage extends State<KelasPage>{
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: ((context) => ManageKelas())));
         },
-      child: Icon(Icons.person),
+      child: Icon(Icons.add),
       ),
       appBar: AppBar(
       title:  Text('Data Kelas'),

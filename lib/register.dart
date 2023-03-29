@@ -286,6 +286,13 @@ class _RegisterState extends State<Register> {
                               ),
                               color: Colors.white,
                             ),
+                            
+      //                       floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.push(context, MaterialPageRoute(builder: ((context) => ManageKelas())));
+      //   },
+      // child: Icon(Icons.person),
+      // ),
                           ],
                         ),
                         SizedBox(

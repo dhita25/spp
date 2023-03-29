@@ -1,9 +1,11 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:spp/controllers/petugas_controller.dart';
 import 'package:spp/models/petugas_model.dart';
 import '../compenents/mytetxtfield.dart';
+import 'package:spp/compenents/dropdown.dart';
 
 class ManagePetugas extends StatefulWidget {
   final petugas_model? petugas;
@@ -21,6 +23,7 @@ class _ManagePetugasState extends State<ManagePetugas> {
   final TextEditingController email= TextEditingController();
   final TextEditingController nama_petugas= TextEditingController();
   final TextEditingController password= TextEditingController();
+  
 
   @override
   void initState() {
@@ -30,6 +33,7 @@ class _ManagePetugasState extends State<ManagePetugas> {
       id.text = widget.petugas?.id;
       email.text = widget.petugas?.email;
       nama_petugas.text = widget.petugas?.nama_petugas;
+      password.text = widget.petugas?.password;
     }else{
       iseditingmode = false;
 
@@ -80,13 +84,13 @@ class _ManagePetugasState extends State<ManagePetugas> {
                       const SizedBox(height: 10),
                       MyTextField(
                         hintedtex: "example: Andri", 
-                        labledtext: "Nama Petugas", 
+                        labledtext: "Nama", 
                         mycontroller: nama_petugas,),
                       const SizedBox(height: 10),
-                       MyTextField(
+                      MyTextField(
                         hintedtex: "example: petugas1", 
                         labledtext: "password", 
-                        mycontroller: email,),
+                        mycontroller: password,),
                       const SizedBox(height: 10),
                     ],
                 )),
@@ -101,14 +105,14 @@ class _ManagePetugasState extends State<ManagePetugas> {
                           petugas_model( 
                             id: id.text,
                             email: email.text, 
-                            nama_petugas: nama_petugas.text,
-                            password: password));
+                            nama_petugas: nama_petugas.text, 
+                            password: password.text, ));
                       }else{
                         petugas_controller().add_petugas(
                           petugas_model( 
                             email: email.text, 
-                            nama_petugas: nama_petugas.text,
-                            password: password.text));
+                            nama_petugas: nama_petugas.text, 
+                            password: password.text, ));
                       }
                 }
                 Navigator.pop(context);

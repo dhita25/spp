@@ -41,6 +41,8 @@ dependencies:
   cloud_firestore: ^4.4.5
   google_nav_bar: ^5.0.6
   flutter_slidable: ^2.0.0
+  csv: ^5.0.1
+  path_provider: ^2.0.14
 
 dev_dependencies:
   flutter_test:

@@ -24,7 +24,7 @@ class _SppPage extends State<SppPage>{
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: ((context) => ManageSpp())));
         },
-      child: Icon(Icons.person),
+      child: Icon(Icons.add),
       ),
       appBar: AppBar(
       title:  Text('Data SPP'),

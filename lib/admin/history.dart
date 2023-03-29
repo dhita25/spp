@@ -10,9 +10,6 @@ class PembayaranPage extends StatefulWidget{
   @override
   State<PembayaranPage> createState() => _PembayaranPage();
 }
-
-
-
 class _PembayaranPage extends State<PembayaranPage>{
   final CollectionReference _pembayaran = 
   FirebaseFirestore.instance.collection("pembayaran"); 
@@ -20,7 +17,7 @@ class _PembayaranPage extends State<PembayaranPage>{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-      title:  Text('History'),
+      title:  Text('History Pembayaran'),
       backgroundColor: Colors.blueGrey[900],
       ),
       body: SafeArea(
@@ -35,7 +32,6 @@ class _PembayaranPage extends State<PembayaranPage>{
                       return Center(child: CircularProgressIndicator(color: Colors.orange[400]),
                       );
                     }
-                    
                     if(snapshots.hasData){
                       return ListView.builder(
                         itemCount: snapshots.data!.docs.length,
@@ -98,7 +94,6 @@ class _PembayaranPage extends State<PembayaranPage>{
                         );
                       });
                     }else{}
-
                     return Center(
                       child: CircularProgressIndicator(color: Colors.red),
                     );

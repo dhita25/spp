@@ -3,7 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:spp/admin/register.dart';
-import 'package:spp/login.dart';// import 'model.dart';
+import 'package:spp/login.dart';
+import 'package:spp/screans/add_edit_petugas.dart';
+import 'package:spp/screans/add_edit_siswa.dart';// import 'model.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -62,7 +64,7 @@ class _RegisterState extends State<Register> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 135,
+                          height: 60,
                         ),
                         Text(
                           "Pembuatan Akun",
@@ -243,37 +245,14 @@ class _RegisterState extends State<Register> {
                           height: 20,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            // MaterialButton(
-                            //   shape: RoundedRectangleBorder(
-                            //       borderRadius:
-                            //           BorderRadius.all(Radius.circular(20.0))),
-                            //   elevation: 5.0,
-                            //   height: 40,
-                            //   onPressed: () {
-                            //     CircularProgressIndicator();
-                            //     Navigator.push(
-                            //       context,
-                            //       MaterialPageRoute(
-                            //         builder: (context) => LoginPage(),
-                            //       ),
-                            //     );
-                            //   },
-                            //   child: Text(
-                            //     "Login",
-                            //     style: TextStyle(
-                            //       fontSize: 20,
-                            //     ),
-                            //   ),
-                            //   color: Colors.white,
-                            // ),
                             MaterialButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(20.0))),
-                              elevation: 5.0,
+                              elevation: 10.0,
                               height: 40,
                               onPressed: () {
                                 setState(() {
@@ -290,7 +269,47 @@ class _RegisterState extends State<Register> {
                               ),
                               color: Colors.white,
                             ),
+                            SizedBox(
+                          height: 30,
+                        ),
                           ],
+                        ),
+                        MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20.0))),
+                              elevation: 5.0,
+                              height: 40,
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: ((context) => ManageSiswa())));
+                              },
+                              child: Text(
+                                "Lengkapi data siswa",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                              color: Colors.white,
+                            ),
+                        MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20.0))),
+                              elevation: 5.0,
+                              height: 40,
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: ((context) => ManagePetugas())));
+                              },
+                              child: Text(
+                                "Lengkapi data petugas",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                          height: 20,
                         ),
                       ],
                     ),
@@ -319,7 +338,7 @@ class _RegisterState extends State<Register> {
     var user = _auth.currentUser;
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
     ref.doc(user!.uid).set({'email': emailController.text, 'rool': rool});
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => LoginPage()));
+    // Navigator.pushReplacement(
+    //     context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 }

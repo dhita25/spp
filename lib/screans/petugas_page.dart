@@ -5,7 +5,6 @@ import 'package:spp/controllers/petugas_controller.dart';
 import 'package:spp/models/petugas_model.dart';
 import 'package:spp/screans/add_edit_petugas.dart';
 
-
 class PetugasPage extends StatefulWidget{
   const PetugasPage({super.key});
 
@@ -16,17 +15,17 @@ class PetugasPage extends StatefulWidget{
 
 
 class _PetugasPage extends State<PetugasPage>{
-  final CollectionReference _petugas = 
+  final CollectionReference _petugas= 
   FirebaseFirestore.instance.collection("petugas"); 
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: ((context) => ManagePetugas())));
-        },
-      child: Icon(Icons.person),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.push(context, MaterialPageRoute(builder: ((context) => ManagePetugas())));
+      //   },
+      // child: Icon(Icons.person),
+      // ),
       appBar: AppBar(
       title:  Text('Data Petugas'),
       backgroundColor: Colors.blueGrey[900],
@@ -61,7 +60,7 @@ class _PetugasPage extends State<PetugasPage>{
                                     final petugas = petugas_model(
                                       id: records.id,
                                       email: records["email"],
-                                      nama_petugas: ["nama_petugas"],
+                                      nama_petugas: records["nama_petugas"],
                                       password: records["password"],
                                     );
                                     Navigator.push(
@@ -84,7 +83,7 @@ class _PetugasPage extends State<PetugasPage>{
                               children: [
                                 SlidableAction(
                                   onPressed: (context) {
-                                    petugas_controller kl_controller;
+                                    petugas_controller pt_controller;
                                     petugas_controller().delete_petugas(petugas_model(id: records.id));
                                   },
                                   icon: Icons.delete_outline,
@@ -97,6 +96,7 @@ class _PetugasPage extends State<PetugasPage>{
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
                               title: Text(records["nama_petugas"]),
+                              subtitle: Text(records["email"]),
                             ), 
                           ),
                         );

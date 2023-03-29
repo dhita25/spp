@@ -20,12 +20,12 @@ class _SiswaPage extends State<SiswaPage>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: ((context) => ManageSiswa())));
-        },
-      child: Icon(Icons.person),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.push(context, MaterialPageRoute(builder: ((context) => ManageSiswa())));
+      //   },
+      // child: Icon(Icons.person),
+      // ),
       appBar: AppBar(
       title:  Text('Data Siswa'),
       backgroundColor: Colors.blueGrey[900],
