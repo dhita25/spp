@@ -169,6 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           height: 20,
                         ),
+                        
                         Visibility(
                             maintainSize: true,
                             maintainAnimation: true,
